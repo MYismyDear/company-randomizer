@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Company Randomizer</title>
-  <meta name="description" content="Company Randomizer Platform - submit a company and randomly discover new websites">
-  <meta name="keywords" content="company, randomizer, startup, business, website discovery">
+  <meta name="description" content="Company website randomizer platform, submit your company, randomly discover new websites">
+  <meta name="keywords" content="company, random, startup, website, discovery">
   <meta name="author" content="MYismyDear">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3595/3595451.png" type="image/png">
+
+
   <style>
     body {
       font-family: "Microsoft YaHei", sans-serif;
@@ -104,9 +109,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Company Website Randomizer</h1>
+    <h1>Company Randomizer</h1>
 
-    <!-- Submit form -->
+    <!-- Submission Form -->
     <h2>Submit Your Company</h2>
     <form id="submitForm">
       <input type="text" id="name" placeholder="Company Name" required>
@@ -118,14 +123,14 @@
 
     <hr>
 
-    <!-- Random button -->
-    <h2>Pick a Random Company</h2>
-    <button id="randomBtn">🎲 Pick One</button>
+    <!-- Random Pick Button -->
+    <h2>Randomly Pick a Company</h2>
+    <button id="randomBtn">🎲 Pick a Company</button>
     <div id="result"></div>
   </div>
 
   <script>
-    const API_BASE = "/api/companies"; // Vercel will map automatically
+    const API_BASE = "/api/companies"; // Vercel mapping
 
     // Submit company
     document.getElementById("submitForm").addEventListener("submit", async (e) => {
@@ -142,13 +147,13 @@
       const data = await res.json();
       document.getElementById("submitResult").innerText = data.message;
 
-      // ✅ Clear form after successful submission
+      // Clear form after successful submission
       if (res.ok) {
         document.getElementById("submitForm").reset();
       }
     });
 
-    // Random pick
+    // Randomly pick company
     document.getElementById("randomBtn").addEventListener("click", async () => {
       const res = await fetch(API_BASE);
       const data = await res.json();
@@ -156,8 +161,8 @@
       if (data.url) {
         document.getElementById("result").innerHTML = `
           <h3>${data.name}</h3>
-          <p>Industry: ${data.industry || "Not provided"}</p>
-          <a href="${data.url}" target="_blank">Visit Company Website</a>
+          <p>Industry: ${data.industry || "Not specified"}</p>
+          <a href="${data.url}" target="_blank">Visit Website</a>
         `;
       } else {
         document.getElementById("result").innerText = data.message;
