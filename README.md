@@ -123,7 +123,7 @@ Without Supabase, the app still works in demo mode (data resets after each sessi
 ## 👤 Author
 
 **MYismyDear**
-📧 [pohjunwei0704@gmail.com](mailto:pohjunwei0704@gmail.com)
+📧 Coming soon
 
 ⭐ If you like this project, give it a **star** on GitHub and share it with friends!
 
