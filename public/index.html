@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>企业随机抽取平台</title>
+  <title>Company Randomizer</title>
+  <meta name="description" content="Company Randomizer Platform - submit a company and randomly discover new websites">
+  <meta name="keywords" content="company, randomizer, startup, business, website discovery">
+  <meta name="author" content="MYismyDear">
   <style>
     body {
       font-family: "Microsoft YaHei", sans-serif;
@@ -101,30 +104,30 @@
 </head>
 <body>
   <div class="container">
-    <h1>企业网址随机抽取平台</h1>
+    <h1>Company Website Randomizer</h1>
 
-    <!-- 提交表单 -->
-    <h2>提交你的企业</h2>
+    <!-- Submit form -->
+    <h2>Submit Your Company</h2>
     <form id="submitForm">
-      <input type="text" id="name" placeholder="企业名称" required>
-      <input type="url" id="url" placeholder="企业网址 (http://...)" required>
-      <input type="text" id="industry" placeholder="行业 (可选)">
-      <button type="submit">提交企业</button>
+      <input type="text" id="name" placeholder="Company Name" required>
+      <input type="url" id="url" placeholder="Company Website (http://...)" required>
+      <input type="text" id="industry" placeholder="Industry (optional)">
+      <button type="submit">Submit Company</button>
     </form>
     <p id="submitResult"></p>
 
     <hr>
 
-    <!-- 抽取按钮 -->
-    <h2>随机抽取企业</h2>
-    <button id="randomBtn">🎲 抽一个企业</button>
+    <!-- Random button -->
+    <h2>Pick a Random Company</h2>
+    <button id="randomBtn">🎲 Pick One</button>
     <div id="result"></div>
   </div>
 
   <script>
-    const API_BASE = "/api/companies"; // Vercel 会自动映射
+    const API_BASE = "/api/companies"; // Vercel will map automatically
 
-    // 提交企业
+    // Submit company
     document.getElementById("submitForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("name").value;
@@ -138,9 +141,14 @@
       });
       const data = await res.json();
       document.getElementById("submitResult").innerText = data.message;
+
+      // ✅ Clear form after successful submission
+      if (res.ok) {
+        document.getElementById("submitForm").reset();
+      }
     });
 
-    // 随机抽取
+    // Random pick
     document.getElementById("randomBtn").addEventListener("click", async () => {
       const res = await fetch(API_BASE);
       const data = await res.json();
@@ -148,8 +156,8 @@
       if (data.url) {
         document.getElementById("result").innerHTML = `
           <h3>${data.name}</h3>
-          <p>行业：${data.industry || "未填写"}</p>
-          <a href="${data.url}" target="_blank">访问企业网站</a>
+          <p>Industry: ${data.industry || "Not provided"}</p>
+          <a href="${data.url}" target="_blank">Visit Company Website</a>
         `;
       } else {
         document.getElementById("result").innerText = data.message;
