@@ -1,19 +1,47 @@
-### 📄 `README.md`
 
-```markdown
-# Company Randomizer
 
-A simple web platform where companies can **submit their websites**, and users can **randomly discover** new company websites.  
-Deployed on [Vercel](https://vercel.com) with backend API integration (supports Supabase for persistence).
+### 📄 新版 `README.md`
+
+````markdown
+---
+title: "🎲 Company Randomizer"
+description: "Discover new companies at random, submit your own, and explore the startup world in one click!"
+author: "MYismyDear"
+tags: ["startup", "random", "companies", "discovery", "vercel", "supabase"]
+date: "2025-09-20"
+---
+
+# 🎲 Company Randomizer
+
+> Discover new companies at random, submit your own, and explore the startup world in one click!  
+
+A fun and interactive platform where **companies can showcase themselves**, and **users can discover new businesses** in a completely random way.  
+
+🌐 **Live Demo**: [company-randomizer.vercel.app](https://your-vercel-deployment-url.vercel.app)  
+
+---
+
+## ✨ Why this project?
+
+- 😎 Perfect for discovering startups and niche businesses  
+- 🎲 Brings randomness + surprise to company discovery  
+- 🚀 Built with modern tools (Vercel + Supabase)  
+- 🌍 Works anywhere, no setup required  
+
+---
+
+## 📸 Preview
+
+- 😎 Hahaha, no preview just try it as well
 
 ---
 
 ## 🚀 Features
 - Submit your company (name, website, industry)
-- Randomly pick one submitted company
-- Clean and modern UI
-- Supports persistent storage via Supabase
-- Fully deployed on Vercel (works even if your computer is off)
+- Randomly discover a submitted company
+- Clean, minimal, mobile-friendly UI
+- Persistent storage via Supabase
+- Hosted on Vercel — always online
 
 ---
 
@@ -26,27 +54,27 @@ Deployed on [Vercel](https://vercel.com) with backend API integration (supports 
 ---
 
 ## 📂 Project Structure
-```
 
+```bash
 company-randomizer/
 ├── public/
-│   └── index.html   # Frontend page
+│   └── index.html      # Frontend page
 ├── api/
-│   └── companies.js # Backend API (submit & randomize companies)
-├── package.json     # Project metadata
-└── README.md        # Project documentation
-
+│   └── companies.js    # Backend API (submit & randomize companies)
+├── package.json        # Project metadata
+└── README.md           # Project documentation
 ````
 
 ---
 
-## ⚡ Setup & Deployment
+## ⚡ Getting Started
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/company-randomizer.git
 cd company-randomizer
-````
+```
 
 ### 2. Install dependencies
 
@@ -60,7 +88,7 @@ npm install
 vercel dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+👉 Open [http://localhost:3000](http://localhost:3000)
 
 ### 4. Deploy to Vercel
 
@@ -70,40 +98,45 @@ vercel
 
 ---
 
-## 🔑 Environment Variables (for Supabase)
+## 🔑 Environment Variables (Supabase)
 
-If you want persistent storage, set these in your Vercel **Project Settings → Environment Variables**:
+For persistence, add these in Vercel:
 
 ```
 SUPABASE_URL = your-supabase-url
 SUPABASE_KEY = your-service-role-key
 ```
 
----
-
-## 🌐 Live Demo
-
-👉 [Visit the deployed site](https://your-vercel-deployment-url.vercel.app)
+Without Supabase, the app still works in demo mode (data resets after each session).
 
 ---
 
 ## 📌 Roadmap
 
-* [ ] Improve UI/UX with animations
-* [ ] Add company categories filter
+* [ ] Add filtering by industry/category
 * [ ] Show list of all submitted companies
-* [ ] Add social sharing features
+* [ ] Enable social sharing (Twitter, LinkedIn)
+* [ ] Add dark mode 🌙
 
 ---
 
 ## 👤 Author
 
-* **MYismyDear**
-* 📧 [pohjunwei0704@gmail.com](mailto:pohjunwei0704@gmail.com)
-* 🌟 If you like this project, give it a **star** on GitHub!
+**MYismyDear**
+📧 [pohjunwei0704@gmail.com](mailto:pohjunwei0704@gmail.com)
+
+⭐ If you like this project, give it a **star** on GitHub and share it with friends!
+
+---
+
+## 💡 Contribute
+
+Want to improve the UI, add new features, or fix bugs?
+Fork the repo, make changes, and submit a PR. Contributions are welcome!
+
+---
 
 ```
 
 ---
-
 
