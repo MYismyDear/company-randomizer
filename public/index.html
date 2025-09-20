@@ -58,8 +58,10 @@
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({name, url, industry})
       });
+
       const data = await res.json();
       document.getElementById("submitResult").innerText = data.message;
+
       if (res.ok) document.getElementById("submitForm").reset();
     });
 
