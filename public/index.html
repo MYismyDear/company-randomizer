@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>企业随机抽取平台</title>
+</head>
+<body>
+  <h1>企业网址随机抽取平台</h1>
+
+  <!-- 提交表单 -->
+  <h2>提交你的企业</h2>
+  <form id="submitForm">
+    <input type="text" id="name" placeholder="企业名称" required><br>
+    <input type="url" id="url" placeholder="企业网址 (http://...)" required><br>
+    <input type="text" id="industry" placeholder="行业 (可选)"><br>
+    <button type="submit">提交</button>
+  </form>
+  <p id="submitResult"></p>
+
+  <hr>
+
+  <!-- 抽取按钮 -->
+  <h2>随机抽取企业</h2>
+  <button id="randomBtn">抽一个企业</button>
+  <div id="result"></div>
+
+  <script>
+    const API_BASE = "/api/companies"; // Vercel 会自动映射
+
+    // 提交企业
+    document.getElementById("submitForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const url = document.getElementById("url").value;
+      const industry = document.getElementById("industry").value;
+
+      const res = await fetch(API_BASE, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, url, industry })
+      });
+      const data = await res.json();
+      document.getElementById("submitResult").innerText = data.message;
+    });
+
+    // 随机抽取
+    document.getElementById("randomBtn").addEventListener("click", async () => {
+      const res = await fetch(API_BASE);
+      const data = await res.json();
+
+      if (data.url) {
+        document.getElementById("result").innerHTML = `
+          <h3>${data.name}</h3>
+          <p>行业：${data.industry || "未填写"}</p>
+          <a href="${data.url}" target="_blank">访问企业网站</a>
+        `;
+      } else {
+        document.getElementById("result").innerText = data.message;
+      }
+    });
+  </script>
+</body>
+</html>
