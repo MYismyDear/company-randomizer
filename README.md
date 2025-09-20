@@ -116,7 +116,7 @@ Without Supabase, the app still works in demo mode (data resets after each sessi
 * [ ] Add filtering by industry/category
 * [ ] Show list of all submitted companies
 * [ ] Enable social sharing (Twitter, LinkedIn)
-* [ ] Add dark mode 🌙
+
 
 ---
 
