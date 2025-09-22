@@ -7,19 +7,42 @@ export default async function handler(req, res) {
     const { name, url, industry } = req.body;
     if (!name || !url) return res.status(400).json({ message: 'Missing required fields!' });
 
-    const { data, error } = await supabase
-      .from('companies')
-      .insert([{ name, url, industry }]);
+    try {
+      // 1. check if company has been
+      const { data: existing, error: selectError } = await supabase
+        .from('companies')
+        .select('id')
+        .eq('name', name)
+        .single();
 
-    if (error) return res.status(500).json({ message: error.message });
+      if (selectError && selectError.code !== 'PGRST116') {
+        // PGRST116 = not found (single)
+        return res.status(500).json({ message: selectError.message });
+      }
 
-    return res.status(200).json({ message: 'Submitted successfully!', data });
+      if (existing) {
+        return res.status(409).json({ message: 'Company already exists!' });
+      }
+
+      // 2. Input new company
+      const { data, error } = await supabase
+        .from('companies')
+        .insert([{ name, url, industry }]);
+
+      if (error) return res.status(500).json({ message: error.message });
+
+      return res.status(200).json({ message: 'Submitted successfully!', data });
+
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Unexpected error' });
+    }
   }
 
   if (req.method === 'GET') {
     const { data, error } = await supabase.from('companies').select('*');
     if (error) return res.status(500).json({ message: error.message });
-    if (data.length === 0) return res.status(200).json({ message: 'No companies submitted yet!' });
+    if (!data || data.length === 0) return res.status(200).json({ message: 'No companies submitted yet!' });
 
     const random = data[Math.floor(Math.random() * data.length)];
     return res.status(200).json(random);
